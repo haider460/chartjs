@@ -1,38 +1,99 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main-container {
+  width: 97%;
+  margin: 10px auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.line-chart {
+  width: 55%;
+}
+
+.doughnut-chart {
+  width: 43%;
+}
+.doughnut-chart canvas {
+  margin: auto;
+}
+
+.footer-line-chart {
+  width: 100%;
+}
+
+.bar-chart {
+  width: 49%;
+}
+
+.card {
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .line-chart {
+    width: 100%;
+  }
+
+  .doughnut-chart {
+    width: 100%;
+  }
+  .footer-line-chart {
+    width: 100%;
+  }
+
+  .bar-chart {
+    width: 100%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.full-chart-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-chart-container {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  max-width: 800px;
+  max-height: 600px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.full-chart-container button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+  color: #333;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.full-chart-content {
+  width: 90%;
+  height: 46%;
 }
