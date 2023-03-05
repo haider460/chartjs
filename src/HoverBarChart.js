@@ -1,4 +1,4 @@
-import { Doughnut } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import { FaDownload, FaTimes, FaExpand } from "react-icons/fa";
 import { useState, useRef } from "react";
@@ -17,24 +17,44 @@ const data = {
     {
       data: [2000, 121, 12312, 1231, 63453, 23, 234],
       backgroundColor: [
-        "#379EA9",
-        "#e96b83",
-        "#bd91d1",
-        "#f29e5f",
-        "#4c8077",
-        "#b4c3bf",
-        "#BB6B8D",
+        "#D3D3D3",
+        "#D3D3D3",
+        "#D3D3D3",
+        "#D3D3D3",
+        "#D3D3D3",
+        "#D3D3D3",
+        "#D3D3D3",
       ],
+      hoverBackgroundColor: [
+        "#2c7b83",
+        "#d3536a",
+        "#a677b6",
+        "#e3824f",
+        "#3d6f64",
+        "#9fb6b2",
+        "#a74d6f",
+      ],
+      barThickness: 10,
     },
   ],
 };
 
 const options = {
+  legend: {
+    display: false,
+  },
   plugins: {
     labels: {
       render: "label",
       fontColor: "#fff",
       position: "outside",
+    },
+    centerLabel: {
+      text: "360",
+      color: "#000",
+      font: {
+        size: "36",
+      },
     },
   },
   layout: {
@@ -42,14 +62,25 @@ const options = {
       right: 40,
     },
   },
-  text: "360",
-  font: {
-    size: 36,
+  scales: {
+    xAxes: [
+      {
+        gridLines: {
+          color: "transparent",
+        },
+      },
+    ],
+    yAxes: [
+      {
+        gridLines: {
+          color: "transparent",
+        },
+      },
+    ],
   },
-  color: "#000",
 };
 
-const ChartCard = () => {
+const HoverBarChart = () => {
   const [showFullChart, setShowFullChart] = useState(false);
   const chartRef = useRef();
 
@@ -59,7 +90,6 @@ const ChartCard = () => {
 
   const exportChart = () => {
     const canvas = chartRef.current?.canvas;
-    console.log(chartRef.current);
     if (!canvas) {
       console.log("Chart canvas is not available");
       return;
@@ -68,7 +98,6 @@ const ChartCard = () => {
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = "chart.png";
-    link.setAttribute("crossOrigin", "anonymous"); // Add this line to set the CORS attribute
     document.body.appendChild(link);
     link.click(); // Added this line to trigger the download
     document.body.removeChild(link);
@@ -77,7 +106,7 @@ const ChartCard = () => {
   return (
     <div className="card shadow border">
       <div className="card-header  d-flex justify-content-between align-items-center">
-        <h6>Doughnut Chart</h6>
+        <h6>Bar chart</h6>
         <div className="d-flex justify-content-between align-items-center ">
           <button
             className="btn btn-sm btn-light mr-2 d-flex align-items-center text-primary border-primary"
@@ -96,14 +125,13 @@ const ChartCard = () => {
         </div>
       </div>
       <div className="card-body">
-        <Doughnut ref={chartRef} data={data} options={options} />
+        <Bar ref={chartRef} data={data} options={options} />
       </div>
-
       {showFullChart && (
         <div className="full-chart-popup">
           <div className="full-chart-container">
             <div className="full-chart-content">
-              <Doughnut id="chart" data={data} options={options} />
+              <Bar id="chart" data={data} options={options} />
               <button
                 className="btn btn-sm btn-light d-flex align-items-center text-primary border-primary"
                 onClick={toggleFullChart}
@@ -119,4 +147,4 @@ const ChartCard = () => {
   );
 };
 
-export default ChartCard;
+export default HoverBarChart;

@@ -1,6 +1,7 @@
 import "./App.css";
 import BarChart from "./Bar";
 import DoughnutChart from "./DoughnutChart";
+import HoverBarChart from "./HoverBarChart";
 import MultiLineChart from "./LineChart";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
           <BarChart />
         </div>
         <div className="bar-chart">
-          <BarChart />
+          <HoverBarChart />
         </div>
       </div>
       <div className="App">
