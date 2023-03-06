@@ -3,6 +3,7 @@ import "chart.js/auto";
 import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
 import { useState, useRef } from "react";
 import { BsBoxArrowUpRight } from "react-icons/bs";
+import { Chart } from "chart.js";
 
 const data = {
   labels: [
@@ -28,7 +29,37 @@ const data = {
       ],
     },
   ],
+  text: "24",
 };
+const plugins = [
+  {
+    beforeDraw: function (chart) {
+      var width = chart.width,
+        height = chart.height,
+        ctx = chart.ctx;
+      ctx.restore();
+      var fontSize = (height / 200).toFixed(2);
+      ctx.font = fontSize + "em sans-serif";
+      ctx.textBaseline = "middle";
+      var text = ["2230", "clicks"],
+        textX = Math.round(width / 2),
+        textY = height / 2 - 10;
+
+      text.forEach((line, i) => {
+        ctx.font = fontSize + "em sans-serif";
+        ctx.textBaseline = "middle";
+        if (i === 0) {
+          ctx.fillStyle = "black"; // set color to black for index 0
+        } else {
+          ctx.font = fontSize * 0.8 + "em sans-serif"; // decrease the font size by 20%
+          ctx.fillStyle = "#999"; // set color to gray for index 1
+        }
+        ctx.fillText(line, textX / 2.5, textY + i * 20);
+      });
+      ctx.save();
+    },
+  },
+];
 
 const options = {
   cutout: 60,
@@ -61,12 +92,12 @@ const options = {
       },
     },
   },
-
   text: "360",
   font: {
-    size: 36,
+    size: 16,
   },
   color: "#000",
+  lineHeight: 1.2,
 };
 
 const ChartCard = () => {
@@ -124,7 +155,12 @@ const ChartCard = () => {
         <p className="text-secondary">Unique Clicks the comapny received</p>
       </div>
       <div className="card-body">
-        <Doughnut ref={chartRef} data={data} options={options} />
+        <Doughnut
+          ref={chartRef}
+          data={data}
+          options={options}
+          plugins={plugins}
+        />
       </div>
 
       {showFullChart && (
