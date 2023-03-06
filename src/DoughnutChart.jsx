@@ -43,8 +43,7 @@ const plugins = [
       var text = ["2230", "clicks"],
         textX = Math.round(width / 2),
         textY = height / 2 - 10;
-
-      const lineHeight = 20; // adjust this value to change the amount of space between lines
+      const lineHeight = 20;
       text.forEach((line, i) => {
         ctx.font = fontSize + "em sans-serif";
         ctx.textBaseline = "middle";
@@ -55,8 +54,8 @@ const plugins = [
           ctx.fillStyle = "#999";
           line = " " + line;
         }
-        const y = textY + i * lineHeight + (i === 0 ? 0 : lineHeight / 2); // add extra space to the first line
-        ctx.fillText(line, textX / 1.9, y);
+        const y = textY + i * lineHeight + (i === 0 ? 0 : lineHeight / 2);
+        ctx.fillText(line, textX / 2.1, y);
       });
       ctx.save();
     },
@@ -68,7 +67,7 @@ const options = {
   plugins: {
     legend: {
       position: "right",
-      rtl: true,
+      rtl: false,
       labels: {
         usePointStyle: true,
         pointStyle: "circle",
@@ -82,7 +81,7 @@ const options = {
               const value = data.datasets[0].data[index];
               return {
                 fillStyle: data.datasets[0].backgroundColor[index],
-                text: `${value} ${label}`,
+                text: `${label}      ${value} `,
                 hidden: isNaN(value) || value <= 0,
                 index: index,
               };
