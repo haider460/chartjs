@@ -34,7 +34,12 @@
 }
 
 .expand-btn {
-  background: "#f29e5f" !important;
+  background-color: #ff8c00 !important;
+  border: solid 1px #ff8c00 !important;
+}
+
+.expand-btn svg {
+  color: #fff;
 }
 
 @media screen and (max-width: 768px) {

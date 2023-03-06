@@ -46,10 +46,7 @@ const options = {
   },
   plugins: {
     legend: {
-      position: "bottom",
-      usePointStyle: false,
-      pointStyle: "circle",
-      padding: 20,
+      display: false,
     },
   },
   scales: {
@@ -99,7 +96,7 @@ const HoverBarChart = () => {
         <div className=" d-flex justify-content-between align-items-center">
           <h6>Phone Sign-ups</h6>
           <div className="d-flex justify-content-between align-items-center ">
-            <button className="btn btn-md expand-btn  mr-2 d-flex align-items-center border border-secondary">
+            <button className="btn btn-md expand-btn mr-2 d-flex align-items-center border border-secondary">
               <BsBoxArrowUpRight className="me-2" />
               <span className="d-none d-md-block"></span>
             </button>

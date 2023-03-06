@@ -37,15 +37,7 @@ const options = {
   },
   plugins: {
     legend: {
-      position: "bottom",
-      usePointStyle: true,
-      pointStyle: "circle",
-      padding: 20,
-      formatter: function (value, context) {
-        return (
-          value + ": " + context.chart.data.datasets[0].data[context.dataIndex]
-        );
-      },
+      display: false,
     },
   },
   layout: {
