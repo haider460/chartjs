@@ -4,8 +4,6 @@ import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
 import { useState, useRef } from "react";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 
-import { Chart } from "chart.js";
-
 const data = {
   labels: [
     "Facebook",
@@ -32,16 +30,8 @@ const data = {
   ],
 };
 
-// const labelCallback = (tooltipItem, data) => {
-//   const dataset = data.datasets[tooltipItem.datasetIndex];
-//   const label = dataset.labels[tooltipItem.index];
-//   const value = dataset.data[tooltipItem.index];
-//   return `${label}: ${value}`;
-// };
-
-
-
 const options = {
+  cutout: 60,
   plugins: {
     legend: {
       position: "right",
@@ -57,12 +47,6 @@ const options = {
           if (data.labels.length && data.datasets.length) {
             return data.labels.map((label, index) => {
               const value = data.datasets[0].data[index];
-              console.log({
-                label,
-                value,
-                data2: data.datasets[0].backgroundColor[index],
-                index,
-              });
               return {
                 fillStyle: data.datasets[0].backgroundColor[index],
                 text: `${value} ${label}`,
