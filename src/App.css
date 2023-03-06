@@ -11,11 +11,11 @@
 }
 
 .line-chart {
-  width: 55%;
+  width: 49%;
 }
 
 .doughnut-chart {
-  width: 43%;
+  width: 49%;
 }
 .doughnut-chart canvas {
   margin: auto;
