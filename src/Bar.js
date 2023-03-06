@@ -100,15 +100,12 @@ const BarChart = () => {
         <div className=" d-flex justify-content-between align-items-center">
           <h6>Email Sign-ups</h6>
           <div className="d-flex justify-content-between align-items-center ">
-            <button
-              className="btn btn-md btn-light mr-2 d-flex align-items-center border border-secondary"
-              onClick={toggleFullChart}
-            >
+            <button className="btn btn-md  expand-btn mr-2 d-flex align-items-center border border-secondary">
               <BsBoxArrowUpRight className="me-2" />
               <span className="d-none d-md-block"></span>
             </button>
             <button
-              className="btn btn-md expand-btn  mr-2 d-flex align-items-center border border-secondary"
+              className="btn btn-md  mr-2 btn-light d-flex align-items-center border border-secondary"
               onClick={toggleFullChart}
             >
               <FaBars className="me-2" />

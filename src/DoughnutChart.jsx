@@ -39,6 +39,23 @@ const data = {
 //   return `${label}: ${value}`;
 // };
 
+Chart.pluginService.register({
+  beforeDraw: function (chart) {
+    var width = chart.chart.width,
+      height = chart.chart.height,
+      ctx = chart.chart.ctx;
+    ctx.restore();
+    var fontSize = (height / 160).toFixed(2);
+    ctx.font = fontSize + "em sans-serif";
+    ctx.textBaseline = "top";
+    var text = "2.44%",
+      textX = Math.round((width - ctx.measureText(text).width) / 2),
+      textY = height / 2.2;
+    ctx.fillText(text, textX, textY);
+    ctx.save();
+  },
+});
+
 const options = {
   plugins: {
     legend: {
@@ -72,14 +89,6 @@ const options = {
             return [];
           }
         },
-      },
-    },
-    doughnutCenterText: {
-      text: "Click 120",
-      color: "#000",
-      font: {
-        size: 20,
-        weight: "bold",
       },
     },
   },
@@ -122,15 +131,12 @@ const ChartCard = () => {
         <div className=" d-flex justify-content-between align-items-center">
           <h6>Unique Clicks</h6>
           <div className="d-flex justify-content-between align-items-center ">
-            <button
-              className="btn btn-md btn-light mr-2 d-flex align-items-center border border-secondary"
-              onClick={toggleFullChart}
-            >
+            <button className="btn btn-md expand-btn mr-2 d-flex align-items-center border border-secondary">
               <BsBoxArrowUpRight className="me-2" />
               <span className="d-none d-md-block"></span>
             </button>
             <button
-              className="btn btn-md expand-btn  mr-2 d-flex align-items-center border border-secondary"
+              className="btn btn-md mr-2 btn-light d-flex align-items-center border border-secondary"
               onClick={toggleFullChart}
             >
               <FaBars className="me-2" />
