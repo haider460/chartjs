@@ -95,31 +95,37 @@ const HoverBarChart = () => {
 
   return (
     <div className="card shadow border">
-      <div className="card-header  d-flex justify-content-between align-items-center">
-        <h6>Bar chart</h6>
-        <div className="d-flex justify-content-between align-items-center ">
-          <button
-            className="btn btn-md expand-btn  mr-2 d-flex align-items-center border border-secondary"
-            onClick={toggleFullChart}
-          >
-            <BsBoxArrowUpRight className="me-2" />
-            <span className="d-none d-md-block"></span>
-          </button>
-          <button
-            className="btn btn-md btn-light mr-2 d-flex align-items-center border border-secondary"
-            onClick={toggleFullChart}
-          >
-            <FaBars className="me-2" />
-          </button>
-          <button
-            className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
-            onClick={exportChart}
-          >
-            <FaDownload className="me-2" />
-            <span className="d-none d-md-block">Export</span>
-          </button>
+      <div className="card-body">
+        <div className=" d-flex justify-content-between align-items-center">
+          <h6>Phone Sign-ups</h6>
+          <div className="d-flex justify-content-between align-items-center ">
+            <button
+              className="btn btn-md btn-light mr-2 d-flex align-items-center border border-secondary"
+              onClick={toggleFullChart}
+            >
+              <BsBoxArrowUpRight className="me-2" />
+              <span className="d-none d-md-block"></span>
+            </button>
+            <button
+              className="btn btn-md expand-btn  mr-2 d-flex align-items-center border border-secondary"
+              onClick={toggleFullChart}
+            >
+              <FaBars className="me-2" />
+              <span className="d-none d-md-block"></span>
+            </button>
+            <button
+              className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
+              onClick={exportChart}
+            >
+              <FaDownload className="me-2" />
+              <span className="d-none d-md-block">Export</span>
+            </button>
+          </div>
         </div>
+
+        <p className="text-secondary">Phone Sign-ups the company recevied</p>
       </div>
+
       <div className="card-body">
         <Bar ref={chartRef} data={data} options={options} />
       </div>

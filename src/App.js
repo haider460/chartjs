@@ -2,6 +2,7 @@ import "./App.css";
 import BarChart from "./Bar";
 import DoughnutChart from "./DoughnutChart";
 import HoverBarChart from "./HoverBarChart";
+import LargeLineChart from "./LargeLineChart";
 import MultiLineChart from "./LineChart";
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
       </div>
       <div className="App">
         <div className="footer-line-chart">
-          <MultiLineChart />
+          <LargeLineChart />
         </div>
       </div>
     </div>

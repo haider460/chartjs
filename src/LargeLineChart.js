@@ -68,7 +68,7 @@ const options = {
   color: "#000",
 };
 
-const LineChart = () => {
+const LargeLineChart = () => {
   const [showFullChart, setShowFullChart] = useState(false);
   const chartRef = useRef();
 
@@ -95,7 +95,7 @@ const LineChart = () => {
     <div className="card shadow border ">
       <div className="card-body">
         <div className=" d-flex justify-content-between align-items-center">
-          <h6>Ambassador Sales</h6>
+          <h6>Ambassador Purchase</h6>
           <div className="d-flex justify-content-between align-items-center ">
             <button
               className="btn btn-md btn-light mr-2 d-flex align-items-center border border-secondary"
@@ -151,4 +151,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default LargeLineChart;
