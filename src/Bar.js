@@ -1,6 +1,7 @@
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
-import { FaDownload, FaTimes, FaExpand } from "react-icons/fa";
+import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 import { useState, useRef } from "react";
 
 const data = {
@@ -17,13 +18,13 @@ const data = {
     {
       data: [2000, 121, 12312, 1231, 63453, 23, 234],
       backgroundColor: [
-        "#379EA9",
-        "#e96b83",
-        "#bd91d1",
         "#f29e5f",
-        "#4c8077",
-        "#b4c3bf",
-        "#BB6B8D",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
       ],
       barThickness: 8,
     },
@@ -35,16 +36,15 @@ const options = {
     display: false,
   },
   plugins: {
-    labels: {
-      render: "label",
-      fontColor: "#fff",
-      position: "outside",
-    },
-    centerLabel: {
-      text: "360",
-      color: "#000",
-      font: {
-        size: "36",
+    legend: {
+      position: "bottom",
+      usePointStyle: true,
+      pointStyle: "circle",
+      padding: 20,
+      formatter: function (value, context) {
+        return (
+          value + ": " + context.chart.data.datasets[0].data[context.dataIndex]
+        );
       },
     },
   },
@@ -90,7 +90,7 @@ const BarChart = () => {
     link.href = dataURL;
     link.download = "chart.png";
     document.body.appendChild(link);
-    link.click(); // Added this line to trigger the download
+    link.click();
     document.body.removeChild(link);
   };
 
@@ -100,14 +100,20 @@ const BarChart = () => {
         <h6>Bar chart</h6>
         <div className="d-flex justify-content-between align-items-center ">
           <button
-            className="btn btn-sm btn-light mr-2 d-flex align-items-center text-primary border-primary"
+            className="btn btn-md expand-btn  mr-2 d-flex align-items-center border border-secondary"
             onClick={toggleFullChart}
           >
-            <FaExpand className="me-2" />
-            <span className="d-none d-md-block">Expand</span>
+            <BsBoxArrowUpRight className="me-2" />
+            <span className="d-none d-md-block"></span>
           </button>
           <button
-            className="btn btn-sm btn-light d-flex align-items-center text-primary border-primary"
+            className="btn btn-md btn-light mr-2 d-flex align-items-center border border-secondary"
+            onClick={toggleFullChart}
+          >
+            <FaBars className="me-2" />
+          </button>
+          <button
+            className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
             onClick={exportChart}
           >
             <FaDownload className="me-2" />

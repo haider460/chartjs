@@ -33,6 +33,10 @@
   height: 100%;
 }
 
+.expand-btn {
+  background: "#f29e5f" !important;
+}
+
 @media screen and (max-width: 768px) {
   .App {
     flex-direction: column;

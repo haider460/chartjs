@@ -1,36 +1,43 @@
 import { useState, useRef } from "react";
 import { Line } from "react-chartjs-2";
-import { FaDownload, FaTimes, FaExpand } from "react-icons/fa";
+import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 
 const data = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: "Dataset 1",
+      label: "twiter",
       data: [65, 59, 80, 81, 56, 55, 40],
       borderColor: "#FF6384",
       backgroundColor: "rgba(255,99,132,0.2)",
       borderWidth: 2,
       lineTension: 0.5,
       borderCapStyle: "round",
+      pointRadius: 3,
+      pointBackgroundColor: "#FF6384",
     },
     {
-      label: "Dataset 2",
+      label: "instagram",
       data: [28, 48, 40, 19, 86, 27, 90],
       borderColor: "#36A2EB",
       backgroundColor: "rgba(54,162,235,0.2)",
       borderWidth: 2,
       lineTension: 0.5,
       borderCapStyle: "round",
+      pointRadius: 3,
+      pointBackgroundColor: "#36A2EB",
     },
     {
-      label: "Dataset 3",
+      label: "facebook",
       data: [45, 80, 50, 70, 56, 75, 30],
       borderColor: "#FFCE56",
       backgroundColor: "rgba(255,206,86,0.2)",
       borderWidth: 2,
       lineTension: 0.5,
       borderCapStyle: "round",
+      pointRadius: 3,
+      pointBackgroundColor: "#FFCE56",
     },
   ],
 };
@@ -38,26 +45,27 @@ const data = {
 const options = {
   responsive: true,
   maintainAspectRatio: false,
-
-  scales: {
-    xAxes: [
-      {
-        gridLines: {
-          color: "transparent",
+  plugins: {
+    legend: {
+      position: "bottom",
+      align: "start",
+      labels: {
+        usePointStyle: true,
+        pointStyle: "circle",
+        padding: 20,
+        boxWidth: 7,
+        boxHeight: 7,
+        font: {
+          size: 12,
         },
       },
-    ],
-    yAxes: [
-      {
-        gridLines: {
-          color: "transparent",
-        },
-      },
-    ],
+    },
   },
-  legend: {
-    display: true,
+  text: "360",
+  font: {
+    size: 36,
   },
+  color: "#000",
 };
 
 const LineChart = () => {
@@ -89,14 +97,20 @@ const LineChart = () => {
         <h6>Line Chart</h6>
         <div className="d-flex justify-content-between align-items-center ">
           <button
-            className="btn btn-sm btn-light mr-2 d-flex align-items-center text-primary border-primary"
+            className="btn btn-md expand-btn  mr-2 d-flex align-items-center border-secondary"
             onClick={toggleFullChart}
           >
-            <FaExpand className="me-2" />
-            <span className="d-none d-md-block">Expand</span>
+            <BsBoxArrowUpRight className="me-2" />
+            <span className="d-none d-md-block"></span>
           </button>
           <button
-            className="btn btn-sm btn-light d-flex align-items-center text-primary border-primary"
+            className="btn btn-md  btn-light mr-2 d-flex align-items-center border border-secondary"
+            onClick={toggleFullChart}
+          >
+            <FaBars className="me-2" />
+          </button>
+          <button
+            className="btn btn-sm  btn-light d-flex align-items-center  border border-secondary"
             onClick={handleExport}
           >
             <FaDownload className="me-2" />

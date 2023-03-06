@@ -1,7 +1,10 @@
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
-import { FaDownload, FaTimes, FaExpand } from "react-icons/fa";
+import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
 import { useState, useRef } from "react";
+import { BsBoxArrowUpRight } from "react-icons/bs";
+
+import { Chart } from "chart.js";
 
 const data = {
   labels: [
@@ -29,19 +32,58 @@ const data = {
   ],
 };
 
+// const labelCallback = (tooltipItem, data) => {
+//   const dataset = data.datasets[tooltipItem.datasetIndex];
+//   const label = dataset.labels[tooltipItem.index];
+//   const value = dataset.data[tooltipItem.index];
+//   return `${label}: ${value}`;
+// };
+
 const options = {
   plugins: {
-    labels: {
-      render: "label",
-      fontColor: "#fff",
-      position: "outside",
+    legend: {
+      position: "right",
+      rtl: true,
+      labels: {
+        usePointStyle: true,
+        pointStyle: "circle",
+        padding: 20,
+        boxWidth: 7,
+        boxHeight: 7,
+        generateLabels: (chart) => {
+          const data = chart.data;
+          if (data.labels.length && data.datasets.length) {
+            return data.labels.map((label, index) => {
+              const value = data.datasets[0].data[index];
+              console.log({
+                label,
+                value,
+                data2: data.datasets[0].backgroundColor[index],
+                index,
+              });
+              return {
+                fillStyle: data.datasets[0].backgroundColor[index],
+                text: `${value} ${label}`,
+                hidden: isNaN(value) || value <= 0,
+                index: index,
+              };
+            });
+          } else {
+            return [];
+          }
+        },
+      },
+    },
+    doughnutCenterText: {
+      text: "Click 120",
+      color: "#000",
+      font: {
+        size: 20,
+        weight: "bold",
+      },
     },
   },
-  layout: {
-    padding: {
-      right: 40,
-    },
-  },
+
   text: "360",
   font: {
     size: 36,
@@ -80,14 +122,21 @@ const ChartCard = () => {
         <h6>Doughnut Chart</h6>
         <div className="d-flex justify-content-between align-items-center ">
           <button
-            className="btn btn-sm btn-light mr-2 d-flex align-items-center text-primary border-primary"
+            className="btn btn-md btn-light mr-2 d-flex align-items-center border border-secondary"
             onClick={toggleFullChart}
           >
-            <FaExpand className="me-2" />
-            <span className="d-none d-md-block">Expand</span>
+            <BsBoxArrowUpRight className="me-2" />
+            <span className="d-none d-md-block"></span>
           </button>
           <button
-            className="btn btn-sm btn-light d-flex align-items-center text-primary border-primary"
+            className="btn btn-md expand-btn  mr-2 d-flex align-items-center border border-secondary"
+            onClick={toggleFullChart}
+          >
+            <FaBars className="me-2" />
+            <span className="d-none d-md-block"></span>
+          </button>
+          <button
+            className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
             onClick={exportChart}
           >
             <FaDownload className="me-2" />

@@ -1,7 +1,8 @@
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
-import { FaDownload, FaTimes, FaExpand } from "react-icons/fa";
+import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
 import { useState, useRef } from "react";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 
 const data = {
   labels: [
@@ -26,13 +27,13 @@ const data = {
         "#D3D3D3",
       ],
       hoverBackgroundColor: [
-        "#2c7b83",
-        "#d3536a",
-        "#a677b6",
-        "#e3824f",
-        "#3d6f64",
-        "#9fb6b2",
-        "#a74d6f",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
+        "#f29e5f",
       ],
       barThickness: 10,
     },
@@ -44,22 +45,11 @@ const options = {
     display: false,
   },
   plugins: {
-    labels: {
-      render: "label",
-      fontColor: "#fff",
-      position: "outside",
-    },
-    centerLabel: {
-      text: "360",
-      color: "#000",
-      font: {
-        size: "36",
-      },
-    },
-  },
-  layout: {
-    padding: {
-      right: 40,
+    legend: {
+      position: "bottom",
+      usePointStyle: false,
+      pointStyle: "circle",
+      padding: 20,
     },
   },
   scales: {
@@ -109,14 +99,20 @@ const HoverBarChart = () => {
         <h6>Bar chart</h6>
         <div className="d-flex justify-content-between align-items-center ">
           <button
-            className="btn btn-sm btn-light mr-2 d-flex align-items-center text-primary border-primary"
+            className="btn btn-md expand-btn  mr-2 d-flex align-items-center border border-secondary"
             onClick={toggleFullChart}
           >
-            <FaExpand className="me-2" />
-            <span className="d-none d-md-block">Expand</span>
+            <BsBoxArrowUpRight className="me-2" />
+            <span className="d-none d-md-block"></span>
           </button>
           <button
-            className="btn btn-sm btn-light d-flex align-items-center text-primary border-primary"
+            className="btn btn-md btn-light mr-2 d-flex align-items-center border border-secondary"
+            onClick={toggleFullChart}
+          >
+            <FaBars className="me-2" />
+          </button>
+          <button
+            className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
             onClick={exportChart}
           >
             <FaDownload className="me-2" />
