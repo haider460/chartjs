@@ -143,10 +143,7 @@ const ChartCard = () => {
               <FaBars className="me-2 " />
               <span className="d-none d-md-block"></span>
             </button>
-            <button
-              className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
-              onClick={exportChart}
-            >
+            <button className="btn btn-sm btn-light d-flex align-items-center border border-secondary">
               <FaDownload className="me-2 mr-2" />
               <span className="d-none d-md-block">Export</span>
             </button>
@@ -170,7 +167,14 @@ const ChartCard = () => {
         <div className="full-chart-popup">
           <div className="full-chart-container">
             <div className="full-chart-content">
-              <Doughnut id="chart" data={data} options={options} />
+              <Doughnut
+                ref={chartRef}
+                data={data}
+                options={options}
+                plugins={plugins}
+                height={429}
+                width={411}
+              />
               <button
                 className="btn btn-sm btn-light d-flex align-items-center text-primary border-primary"
                 onClick={toggleFullChart}
