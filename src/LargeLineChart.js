@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Line } from "react-chartjs-2";
 import { FaFolderMinus, FaTimes, FaBars } from "react-icons/fa";
 import { BsBoxArrowUpRight } from "react-icons/bs";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const data = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -83,7 +84,7 @@ const LargeLineChart = () => {
     link.href = dataURL;
     link.download = "chart.png";
     document.body.appendChild(link);
-    link.click(); // Added this line to trigger the download
+    link.click();
     document.body.removeChild(link);
   };
 
@@ -112,8 +113,9 @@ const LargeLineChart = () => {
               className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
               onClick={handleExport}
             >
-              <FaFolderMinus className="me-2" />
-              <span className="d-none d-md-block">Last week</span>
+              <FaFolderMinus className="me-2 mr-2" />
+              <span className="d-none d-md-block mr-1">Last week</span>
+              <RiArrowDropDownLine />
             </button>
           </div>
         </div>

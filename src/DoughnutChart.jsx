@@ -44,6 +44,7 @@ const plugins = [
         textX = Math.round(width / 2),
         textY = height / 2 - 10;
 
+      const lineHeight = 20; // adjust this value to change the amount of space between lines
       text.forEach((line, i) => {
         ctx.font = fontSize + "em sans-serif";
         ctx.textBaseline = "middle";
@@ -54,7 +55,8 @@ const plugins = [
           ctx.fillStyle = "#999";
           line = " " + line;
         }
-        ctx.fillText(line, textX / 1.9, textY + i * 20);
+        const y = textY + i * lineHeight + (i === 0 ? 0 : lineHeight / 2); // add extra space to the first line
+        ctx.fillText(line, textX / 1.9, y);
       });
       ctx.save();
     },
@@ -139,14 +141,14 @@ const ChartCard = () => {
               className="btn btn-md mr-2 btn-light d-flex align-items-center border border-secondary"
               onClick={toggleFullChart}
             >
-              <FaBars className="me-2" />
+              <FaBars className="me-2 " />
               <span className="d-none d-md-block"></span>
             </button>
             <button
               className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
               onClick={exportChart}
             >
-              <FaDownload className="me-2" />
+              <FaDownload className="me-2 mr-2" />
               <span className="d-none d-md-block">Export</span>
             </button>
           </div>

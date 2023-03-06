@@ -111,7 +111,7 @@ const HoverBarChart = () => {
               className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
               onClick={exportChart}
             >
-              <FaDownload className="me-2" />
+              <FaDownload className="me-2 mr-2" />
               <span className="d-none d-md-block">Export</span>
             </button>
           </div>
