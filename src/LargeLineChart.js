@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Line } from "react-chartjs-2";
-import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
+import { FaFolderMinus, FaTimes, FaBars } from "react-icons/fa";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 
 const data = {
@@ -112,8 +112,8 @@ const LargeLineChart = () => {
               className="btn btn-sm btn-light d-flex align-items-center border border-secondary"
               onClick={handleExport}
             >
-              <FaDownload className="me-2" />
-              <span className="d-none d-md-block">Export</span>
+              <FaFolderMinus className="me-2" />
+              <span className="d-none d-md-block">Last week</span>
             </button>
           </div>
         </div>

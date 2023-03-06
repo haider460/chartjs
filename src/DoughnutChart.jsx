@@ -3,7 +3,6 @@ import "chart.js/auto";
 import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
 import { useState, useRef } from "react";
 import { BsBoxArrowUpRight } from "react-icons/bs";
-import { Chart } from "chart.js";
 
 const data = {
   labels: [
@@ -49,12 +48,13 @@ const plugins = [
         ctx.font = fontSize + "em sans-serif";
         ctx.textBaseline = "middle";
         if (i === 0) {
-          ctx.fillStyle = "black"; // set color to black for index 0
+          ctx.fillStyle = "black";
         } else {
-          ctx.font = fontSize * 0.8 + "em sans-serif"; // decrease the font size by 20%
-          ctx.fillStyle = "#999"; // set color to gray for index 1
+          ctx.font = fontSize * 0.8 + "em sans-serif";
+          ctx.fillStyle = "#999";
+          line = " " + line;
         }
-        ctx.fillText(line, textX / 2.5, textY + i * 20);
+        ctx.fillText(line, textX / 1.9, textY + i * 20);
       });
       ctx.save();
     },
@@ -62,7 +62,7 @@ const plugins = [
 ];
 
 const options = {
-  cutout: 60,
+  cutout: 90,
   plugins: {
     legend: {
       position: "right",
@@ -119,9 +119,9 @@ const ChartCard = () => {
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = "chart.png";
-    link.setAttribute("crossOrigin", "anonymous"); // Add this line to set the CORS attribute
+    link.setAttribute("crossOrigin", "anonymous");
     document.body.appendChild(link);
-    link.click(); // Added this line to trigger the download
+    link.click();
     document.body.removeChild(link);
   };
 
@@ -160,6 +160,8 @@ const ChartCard = () => {
           data={data}
           options={options}
           plugins={plugins}
+          height={429}
+          width={411}
         />
       </div>
 
