@@ -3,33 +3,92 @@ import "chart.js/auto";
 import { FaDownload, FaTimes, FaBars } from "react-icons/fa";
 import { useState, useRef } from "react";
 import { BsBoxArrowUpRight } from "react-icons/bs";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 const data = {
-  labels: [
-    "Facebook",
-    "Instagram",
-    "Twitter",
-    "Youtube",
-    "Tiktok",
-    "Text",
-    "Email",
-  ],
+  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
   datasets: [
     {
-      data: [2000, 121, 12312, 1231, 63453, 23, 234],
+      label: "My Dataset",
+      data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
-        "#379EA9",
-        "#e96b83",
-        "#bd91d1",
-        "#f29e5f",
-        "#4c8077",
-        "#b4c3bf",
-        "#BB6B8D",
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
       ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
     },
   ],
-  text: "24",
+  percentageData: [],
 };
+
+const sum = data.datasets[0].data.reduce((a, b) => a + b, 0);
+data.datasets[0].data.forEach((value) => {
+  data.percentageData.push(value);
+});
+
+const options = {
+  plugins: {
+    legend: {
+      position: "right",
+      rtl: false,
+      labels: {
+        usePointStyle: true,
+        pointStyle: "circle",
+        padding: 20,
+        boxWidth: 7,
+        boxHeight: 7,
+        generateLabels: function (chart) {
+          const dataset = chart.data.datasets[0];
+          return dataset.data.map((value, index) => {
+            const label =
+              data.labels[index] +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              "  " +
+              data.percentageData[index];
+            return {
+              text: label,
+              fillStyle: dataset.backgroundColor[index],
+              strokeStyle: dataset.borderColor[index],
+              lineWidth: dataset.borderWidth,
+              hidden:
+                isNaN(value) || chart.getDatasetMeta(0).data[index].hidden,
+              index: index,
+            };
+          });
+        },
+      },
+    },
+  },
+  text: "360",
+  font: {
+    size: 16,
+  },
+  color: "#000",
+  lineHeight: 1.2,
+};
+
 const plugins = [
   {
     beforeDraw: function (chart) {
@@ -55,51 +114,12 @@ const plugins = [
           line = " " + line;
         }
         const y = textY + i * lineHeight + (i === 0 ? 0 : lineHeight / 2);
-        ctx.fillText(line, textX / 2.1, y);
+        ctx.fillText(line, textX / 2.3, y);
       });
       ctx.save();
     },
   },
 ];
-
-const options = {
-  cutout: 90,
-  plugins: {
-    legend: {
-      position: "right",
-      rtl: false,
-      labels: {
-        usePointStyle: true,
-        pointStyle: "circle",
-        padding: 20,
-        boxWidth: 7,
-        boxHeight: 7,
-        generateLabels: (chart) => {
-          const data = chart.data;
-          if (data.labels.length && data.datasets.length) {
-            return data.labels.map((label, index) => {
-              const value = data.datasets[0].data[index];
-              return {
-                fillStyle: data.datasets[0].backgroundColor[index],
-                text: `${label}      ${value} `,
-                hidden: isNaN(value) || value <= 0,
-                index: index,
-              };
-            });
-          } else {
-            return [];
-          }
-        },
-      },
-    },
-  },
-  text: "360",
-  font: {
-    size: 16,
-  },
-  color: "#000",
-  lineHeight: 1.2,
-};
 
 const ChartCard = () => {
   const [showFullChart, setShowFullChart] = useState(false);
@@ -172,8 +192,8 @@ const ChartCard = () => {
                 data={data}
                 options={options}
                 plugins={plugins}
-                height={429}
-                width={411}
+                height={500}
+                width={500}
               />
               <button
                 className="btn btn-sm btn-light d-flex align-items-center text-primary border-primary"
